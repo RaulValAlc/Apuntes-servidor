@@ -1,16 +1,3 @@
-<?php
-$size = mt_rand(1,6);
-$rojo = mt_rand(0,255);
-$red = dechex($rojo);
-if ($red < 16) {
-    $red = "0" . $red;
-}
-$green = mt_rand(1,99);
-$blue = mt_rand(1,99);
-$color = $red . $green . $blue;
-echo "<h".$size." style='color:#".$color."'>Esto es un titulo en color #".$color."</h".$size.">";
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,10 +5,25 @@ echo "<h".$size." style='color:#".$color."'>Esto es un titulo en color #".$color
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="estiloBono.css">
+    <title>BonoLoto</title>
 </head>
 <body>
-
+<h1>Lotería Bonoloto</h1>
+<fieldset>
+    <legend>Numeros premiados:</legend>
+    <?php
+    $numeros = [];
+    for ($i = 0; $i < 6; $i++) {
+        $n = rand(1, 49);
+        if (!in_array($n, $numeros)) {
+            $numeros[$i] = $n;
+            echo "<p class='bonoloto'>" . $n . "</p>";
+        } else {
+            $i--;
+        }
+    }
+    ?>
+</fieldset>
 </body>
 </html>
-
