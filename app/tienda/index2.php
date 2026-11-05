@@ -1,21 +1,41 @@
 <?php
 
-function get_form($productos){
+function get_form($productos)
+{
     $html = "<form method='post' action=''>";
     foreach ($productos as $nombre => $producto) {
-        $html .= "<label input type='number' value=" . $nombre . " Quedan: " . $producto['unidades'] . " unidades a " . $producto['precio'] . " cada una></label></br>";
-        $html .= "<input type='number' name=" . $nombre . "></input></br>";
+        $html .= "<label>Producto: " . $nombre . " - Quedan: " . $producto['unidades'] . " unidades a " . $producto['precio'] . "€ cada una. </label>";
+        $html .= "<input type='number' name='cantidades[" . $nombre . "]' value='0' min='0'><br>    ";
     }
-    $html .= "<input type='submit' value='Comprar'></input></br>";
+    $html .= "<input type='submit' name='submit' value='Comprar'><br>";
+    $html .= "</form>";
     return $html;
 }
 
-function get_invoice($productos){
-
+function get_invoice(&$productos)
+{
+    $cantidades = $_POST["cantidades"] ?? [];
+    $html = "";
+    $total = 0;
+    foreach ($cantidades as $nombre => $cantidad) {
+        if ($cantidad > 0) {
+            $precio = $cantidad * $productos[$nombre]['precio'];
+            $total += $precio;
+            $html .= $nombre . " x " . $cantidad . " = " . $precio . "$<br>";
+            $productos[$nombre]['unidades'] = $productos[$nombre]['unidades'] - $cantidad;
+        }
+    }
+    $html .= "Total: $total $";
+    return $html;
 }
 
-function get_report($productos){
-
+function get_report($productos)
+{
+    $html = "";
+    foreach ($productos as $nombre => $datos) {
+            $html .= $nombre . " quedan: " . $datos['unidades'] . " unidades<br>";
+    }
+    return $html;
 }
 
 $productos = [
@@ -43,7 +63,7 @@ switch ($opcion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="estilos/estilos.css">
     <title>Tienda</title>
 </head>
 <body class="tienda">
@@ -51,9 +71,7 @@ switch ($opcion) {
 <?php if (isset($form)): ?>
     <fieldset>
         <legend>Productos disponibles</legend>
-        <form action="index2.php" method="post">
             <?= $form ?>
-        </form>
     </fieldset>
 
 <?php else: ?>

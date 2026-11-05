@@ -36,8 +36,6 @@ switch ($opcion) {
     <input type="submit" value="Primero" name="submit">
     <input type="submit" value="Imprimir" name="submit">
     <input type="submit" value="Saludar" name="submit">
-
-
 </form>
 </body>
 </html>
