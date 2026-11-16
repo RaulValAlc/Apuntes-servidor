@@ -7,6 +7,7 @@ $content = "";
 if ($canalElegido != null) {
     foreach ($categorias as $categoria) {
         if ($categoria['name'] == $canalElegido) {
+            $content .= "<h2>Cadenas en {$categoria['name']}:</h2>\n";
             foreach ($categoria['channels'] as $canal) {
                 $img = $canal['logo'];
                 $name = $canal['name'];
