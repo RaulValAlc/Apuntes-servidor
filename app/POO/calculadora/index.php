@@ -1,33 +1,42 @@
 <?php
 
-$carga = fn($clase)=>require_once ("./class/$clase.php");
+if (isset($_POST['submit'])) {
+    $carga = fn($clase) => require_once("./class/$clase.php");
 
-spl_autoload_register($carga);
-
-try {
-    $r1 = new Racional();
-    $r2 = new Racional(6);
-    $r3 = new Racional(7,6);
-    $r4 = new Racional("9/87");
-    $r5 = new Racional("31");
-    echo "<h1>$r1+$r2</h1>";
-}catch (Exception $e){
-    echo "Error ".$e->getMessage();
+    spl_autoload_register($carga);
 }
-echo "<h1>$r1</h1>";
-echo "<h1>$r2</h1>";
-echo "<h1>$r3</h1>";
-echo "<h1>$r4</h1>";
-echo "<h1>$r5</h1>";
+    $op1= new Racional( htmlspecialchars($_POST['op1']) );
+    $op2= new Racional( htmlspecialchars($_POST['op1']) );
+    $operador = htmlspecialchars($_POST['operador']);
+    $rtdo = match ($operador) {
+        '+' => $op1->sumar($op2),
+        '-' => $op1->restar($op2),
+        '*' => $op1->multiplicar($op2),
+        '/' => $op1->dividir($op2),
+    };
+    $msj = "$op1 $operador ";
 
-$op1 = new Operacion ("5344/7");  // + - * /
-$op2 = new Operacion (5,545645,"*");
-
-
-
-echo "<h1>$op1</h1>";
-echo "<h1>$op2</h1>";
-
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="index.php" method="POST">
+    <fieldset style="margin:10%;background-color: antiquewhite;width:60%;border: solid blue">
+        <legend>Calculadora</legend>
+        <input type="text" value=<?=$op1??"">
+        <input type="submit" value="Enviar" name="submit">
+    </fieldset>
+    <?=$mensaje?>
+</form>
+</body>
+</html>
 
 
 

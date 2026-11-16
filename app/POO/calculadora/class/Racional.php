@@ -16,6 +16,8 @@ class Racional
 
     public function __construct( int|string|null $num=1,   int|null $den=1)
     {
+        $this->den = $den;
+
         if (is_string($num)) {
             $datos = explode("/", $num);
             $num = $datos[0];
@@ -40,9 +42,32 @@ class Racional
     }
 
 
-    //métodos
-    public function sumar(Racional $op1):Racional{
 
+    public function sumar(Racional $op1):Racional{
+        $num = $this->num* $op1->den+$this->den*$op1->num;
+        $den = $this->den*$op1->den;
+        return new Racional($num,$den);
     }
+    public function restar(Racional $op1):Racional{
+        $num = $this->num* $op1->den - $this->den*$op1->num;
+        $den = $this->den*$op1->den;
+        return new Racional($num,$den);
+    }
+    public function multiplicar(Racional $op1):Racional{
+        $num = $this->num* $op1->num;
+        $den = $this->den*$op1->den;
+        return new Racional($num,$den);
+    }
+    public function dividir(Racional $op1):Racional{
+        $num = $this->num* $op1->den;
+        $den = $this->den*$op1->num;
+        return new Racional($num,$den);
+    }
+
+
+
+
+    //métidos
+
 
 }
