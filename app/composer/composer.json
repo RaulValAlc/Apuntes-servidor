@@ -1,0 +1,15 @@
+{
+    "name": "root/composer",
+    "require": {},
+    "autoload": {
+        "classmap": [
+            "./class"
+        ],
+        "psr-4": {
+            "Utilidades\\": "./class",
+            "Utilidades\\Controllers\\": ".class/controllers",
+            "Utilidades\\Models\\": ".class/models",
+            "Utilidades\\Views\\": ".class/view"
+        }
+    }
+}

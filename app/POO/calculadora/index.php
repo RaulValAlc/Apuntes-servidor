@@ -30,10 +30,14 @@ if (isset($_POST['submit'])) {
 <form action="index.php" method="POST">
     <fieldset style="margin:10%;background-color: antiquewhite;width:60%;border: solid blue">
         <legend>Calculadora</legend>
-        <input type="text" value=<?=$op1??"">
-        <input type="submit" value="Enviar" name="submit">
+        <?php
+        //<input type="text" value=<?=$op1??"">
+        //<input type="submit" value="Enviar" name="submit">
+        ?>
     </fieldset>
-    <?=$mensaje?>
+    <?php
+    //<?=$mensaje?>
+    ?>
 </form>
 </body>
 </html>

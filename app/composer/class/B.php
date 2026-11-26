@@ -1,5 +1,5 @@
 <?php
-
+namespace Utilidades;
 class B {
 
     public function __toString() {

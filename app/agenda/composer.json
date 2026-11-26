@@ -1,0 +1,6 @@
+{
+    "name": "root/agenda",
+    "require": {
+        "stichoza/google-translate-php": "^5.3"
+    }
+}

@@ -85,6 +85,18 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.boton {
+    background: #2563eb;
+    color: red;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
 input[type="submit"]:hover {
     background: #1d4ed8;
 }

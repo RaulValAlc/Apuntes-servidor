@@ -1,8 +1,10 @@
 <?php
+namespace Utilidades\Controllers;
+class D
+{
 
-class A {
-
-    public function __toString() {
+    public function __toString()
+    {
         return "Estoy en la clase " . __CLASS__;
     }
 }

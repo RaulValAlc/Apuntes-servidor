@@ -1,5 +1,5 @@
 <?php
-namespace Utilidades\Models;
+namespace Utilidades\Controllers;
 class F
 {
 

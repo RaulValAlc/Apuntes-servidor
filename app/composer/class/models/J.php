@@ -1,6 +1,6 @@
 <?php
 namespace Utilidades\Models;
-class F
+class J
 {
 
     public function __toString()
