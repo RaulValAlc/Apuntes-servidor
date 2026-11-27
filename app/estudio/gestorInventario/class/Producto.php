@@ -6,7 +6,7 @@ class Producto
     private float $precio;
     private int $cantidad;
 
-    public function __construct(string|null $nombre = null, float|null $precio = 0, int|null $cantidad = 0)
+    public function __construct(string $nombre, float $precio, int $cantidad)
     {
         $this->nombre = $nombre;
         $this->precio = $precio;
@@ -28,6 +28,10 @@ class Producto
     public function getCantidad(): int
     {
         return $this->cantidad;
+    }
+
+    public function añadirCantidad(int $n){
+        $this->cantidad += $n;
     }
 
 }
